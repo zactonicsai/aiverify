@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,344 +13,279 @@ tailwind.config = {
       colors: {
         navy: { 50:'#f0f3f8', 100:'#d9e0ed', 200:'#b3c1db', 300:'#8da2c9', 400:'#4a6fa5', 500:'#2c4a7c', 600:'#1e3a5f', 700:'#162d4a', 800:'#0f2035', 900:'#091520', 950:'#050b12' },
         gold: { 50:'#fdf9ef', 100:'#f9f0d5', 200:'#f2dfa8', 300:'#e9c96e', 400:'#e0b43e', 500:'#c9982a', 600:'#a67a20', 700:'#7d5b1a', 800:'#5c4316', 900:'#3d2d10' },
-        verdict: { innocent:'#22c55e', suspect:'#f59e0b', flagged:'#ef4444' }
       }
     }
   }
 }
 </script>
 <style>
-  @media print {
-    .no-print { display: none !important; }
-    .print-only { display: block !important; }
-    body { background: white !important; color: black !important; }
-    .print-break { page-break-before: always; }
-    * { color-adjust: exact; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  :root { --t: 0.35s cubic-bezier(0.4,0,0.2,1); }
+
+  [data-theme="dark"] {
+    --bg-body:#050b12; --bg-s:rgba(9,21,32,0.6); --bg-e:rgba(15,32,53,0.6); --bg-i:rgba(15,32,53,0.6);
+    --brd:rgba(22,45,74,0.3); --brd-a:rgba(201,152,42,0.2); --brd-d:rgba(30,58,95,0.4);
+    --t1:#fff; --t2:#d9e0ed; --tm:#8da2c9; --tf:#4a6fa5; --tg:#e9c96e; --tgs:#e0b43e;
+    --hdr-from:#091520; --hdr-via:#0f2035; --hdr-to:#050b12;
+    --hero-from:rgba(9,21,32,0.5); --nav-bg:rgba(5,11,18,0.95);
+    --btn-bg:rgba(22,45,74,0.5); --btn-bgh:rgba(30,58,95,0.5); --btn-brd:rgba(44,74,124,0.3);
+    --chk-h:rgba(201,152,42,0.05); --tag-bg:rgba(201,152,42,0.1); --tag-brd:rgba(201,152,42,0.2);
+    --bdg:rgba(22,45,74,0.5); --prg:rgba(22,45,74,0.5);
+    --re:rgba(34,197,94,0.1); --reb:rgba(34,197,94,0.2); --rt:rgba(20,184,166,0.1); --rtb:rgba(20,184,166,0.2);
+    --ra:rgba(245,158,11,0.1); --rab:rgba(245,158,11,0.2); --ro:rgba(249,115,22,0.1); --rob:rgba(249,115,22,0.2);
+    --rr:rgba(239,68,68,0.1); --rrb:rgba(239,68,68,0.2);
+    --wf:linear-gradient(135deg,rgba(201,152,42,0.2),rgba(166,122,32,0.1));
+    --shadow-h:rgba(0,0,0,0.15); --tt-bg:#162d4a; --tt-c:#f9f0d5;
   }
-  .print-only { display: none; }
-  body { font-family: 'DM Sans', sans-serif; }
-  h1, h2, h3, .font-display { font-family: 'Playfair Display', serif; }
-  .font-serif-body { font-family: 'Source Serif 4', serif; }
-  .grain { position: relative; }
-  .grain::after {
-    content: ''; position: absolute; inset: 0; opacity: 0.03; pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  [data-theme="light"] {
+    --bg-body:#f5f3ef; --bg-s:rgba(255,255,255,0.85); --bg-e:rgba(255,255,255,0.95); --bg-i:rgba(240,237,232,0.8);
+    --brd:rgba(210,200,185,0.5); --brd-a:rgba(166,122,32,0.25); --brd-d:rgba(180,170,155,0.5);
+    --t1:#1a1613; --t2:#3d352c; --tm:#6b5f52; --tf:#9a8e7f; --tg:#7d5b1a; --tgs:#a67a20;
+    --hdr-from:#fffdf8; --hdr-via:#faf6ef; --hdr-to:#f5f0e6;
+    --hero-from:rgba(250,246,239,0.7); --nav-bg:rgba(245,243,239,0.97);
+    --btn-bg:rgba(230,225,215,0.6); --btn-bgh:rgba(220,215,205,0.8); --btn-brd:rgba(200,190,175,0.5);
+    --chk-h:rgba(166,122,32,0.06); --tag-bg:rgba(166,122,32,0.08); --tag-brd:rgba(166,122,32,0.2);
+    --bdg:rgba(230,225,215,0.7); --prg:rgba(220,215,205,0.6);
+    --re:rgba(34,197,94,0.08); --reb:rgba(34,197,94,0.25); --rt:rgba(20,184,166,0.08); --rtb:rgba(20,184,166,0.25);
+    --ra:rgba(245,158,11,0.08); --rab:rgba(245,158,11,0.25); --ro:rgba(249,115,22,0.08); --rob:rgba(249,115,22,0.25);
+    --rr:rgba(239,68,68,0.08); --rrb:rgba(239,68,68,0.25);
+    --wf:linear-gradient(135deg,rgba(166,122,32,0.12),rgba(201,152,42,0.06));
+    --shadow-h:rgba(0,0,0,0.08); --tt-bg:#3d352c; --tt-c:#fdf9ef;
   }
-  .rating-bar { transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
-  .fade-in { animation: fadeIn 0.5s ease forwards; opacity: 0; }
-  @keyframes fadeIn { to { opacity: 1; } }
-  .slide-up { animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; transform: translateY(20px); }
-  @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-  .checklist-item:hover { background: rgba(201, 152, 42, 0.05); }
-  .tab-active { border-bottom: 3px solid #c9982a; color: #c9982a; }
-  input[type="checkbox"] { accent-color: #c9982a; }
-  .tooltip { position: relative; }
-  .tooltip:hover::after {
-    content: attr(data-tip); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%);
-    background: #162d4a; color: #f9f0d5; padding: 6px 12px; border-radius: 6px; font-size: 12px;
-    white-space: nowrap; z-index: 50; margin-bottom: 6px;
-  }
-  .case-card { transition: all 0.3s ease; }
-  .case-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
-  @keyframes pulse-gold { 0%,100%{ box-shadow: 0 0 0 0 rgba(201,152,42,0.3); } 50%{ box-shadow: 0 0 0 8px rgba(201,152,42,0); } }
-  .pulse-gold { animation: pulse-gold 2s infinite; }
-  textarea, input, select { font-family: 'DM Sans', sans-serif; }
+
+  @media print { .no-print{display:none!important} .print-only{display:block!important} body{background:white!important;color:black!important} *{color-adjust:exact;-webkit-print-color-adjust:exact;print-color-adjust:exact} }
+  .print-only{display:none}
+  body{font-family:'DM Sans',sans-serif; background:var(--bg-body); color:var(--t2); transition:background var(--t),color var(--t)}
+  h1,h2,h3,.font-display{font-family:'Playfair Display',serif}
+  .font-serif-body{font-family:'Source Serif 4',serif}
+
+  .grain{position:relative} .grain::after{content:'';position:absolute;inset:0;opacity:0.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .rating-bar{transition:width 0.8s cubic-bezier(0.22,1,0.36,1)}
+  .fade-in{animation:fadeIn .5s ease forwards;opacity:0} @keyframes fadeIn{to{opacity:1}}
+  .slide-up{animation:slideUp .6s cubic-bezier(0.22,1,0.36,1) forwards;opacity:0;transform:translateY(20px)} @keyframes slideUp{to{opacity:1;transform:translateY(0)}}
+  .checklist-item:hover{background:var(--chk-h)}
+  .tab-active{border-bottom:3px solid var(--tgs)!important;color:var(--tgs)!important}
+  input[type="checkbox"]{accent-color:#c9982a}
+  .case-card{transition:all .3s ease} .case-card:hover{transform:translateY(-2px);box-shadow:0 8px 30px var(--shadow-h)}
+  textarea,input,select{font-family:'DM Sans',sans-serif}
+
+  /* Themed helpers */
+  .s{background:var(--bg-s);border:1px solid var(--brd);transition:all var(--t)}
+  .e{background:var(--bg-e);border:1px solid var(--brd);transition:all var(--t)}
+  .ti{background:var(--bg-i);border:1px solid var(--brd);color:var(--t1);transition:all var(--t)}
+  .ti::placeholder{color:var(--tf)} .ti:focus{border-color:var(--tgs);outline:none;box-shadow:0 0 0 2px rgba(201,152,42,0.15)}
+
+  /* Theme Toggle */
+  .theme-toggle{position:relative;width:58px;height:30px;border-radius:999px;cursor:pointer;border:2px solid var(--brd);background:var(--btn-bg);transition:all var(--t);flex-shrink:0}
+  .theme-toggle:hover{border-color:var(--tgs)}
+  .theme-knob{position:absolute;top:2px;width:22px;height:22px;border-radius:50%;transition:all var(--t);display:flex;align-items:center;justify-content:center}
+  [data-theme="dark"] .theme-knob{left:3px;background:linear-gradient(135deg,#e9c96e,#e0b43e)}
+  [data-theme="light"] .theme-knob{left:29px;background:linear-gradient(135deg,#2c4a7c,#1e3a5f)}
+  .sun-icon,[data-theme="dark"] .moon-icon{display:none}
+  [data-theme="dark"] .sun-icon,[data-theme="light"] .moon-icon{display:none}
+  [data-theme="dark"] .moon-icon{display:block}
+  [data-theme="light"] .sun-icon{display:block}
 </style>
 </head>
-<body class="bg-navy-950 text-navy-100 min-h-screen">
+<body class="min-h-screen">
 
-<!-- ===== HEADER ===== -->
-<header class="grain bg-gradient-to-br from-navy-900 via-navy-800 to-navy-950 border-b border-gold-700/20 no-print">
-  <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
+<!-- HEADER -->
+<header class="grain no-print border-b" style="background:linear-gradient(135deg,var(--hdr-from),var(--hdr-via),var(--hdr-to));border-color:var(--brd-a)">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-5 flex items-center justify-between flex-wrap gap-4">
     <div class="flex items-center gap-4">
       <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-lg shadow-gold-500/20">
         <svg class="w-7 h-7 text-navy-900" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
       </div>
       <div>
-        <h1 class="text-2xl font-display font-bold text-gold-300 tracking-wide">VERITAS AI</h1>
-        <p class="text-xs text-navy-300 tracking-widest uppercase">Judicial Artifact Authentication Service</p>
+        <h1 class="text-2xl font-display font-bold tracking-wide" style="color:var(--tg)">VERITAS AI</h1>
+        <p class="text-xs tracking-widest uppercase" style="color:var(--tm)">Judicial Artifact Authentication Service</p>
       </div>
     </div>
-    <div class="flex items-center gap-3">
-      <button onclick="exportData()" class="px-4 py-2 text-sm bg-navy-700/50 hover:bg-navy-600/50 border border-navy-500/30 rounded-lg text-navy-200 transition flex items-center gap-2">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-        Export
+    <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+      <!-- Theme Toggle -->
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark mode">
+        <div class="theme-knob">
+          <svg class="sun-icon w-3.5 h-3.5" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg class="moon-icon w-3.5 h-3.5" fill="none" stroke="#050b12" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </div>
       </button>
-      <label class="px-4 py-2 text-sm bg-navy-700/50 hover:bg-navy-600/50 border border-navy-500/30 rounded-lg text-navy-200 transition cursor-pointer flex items-center gap-2">
+      <button onclick="exportData()" class="px-3 sm:px-4 py-2 text-sm rounded-lg transition flex items-center gap-2" style="background:var(--btn-bg);border:1px solid var(--btn-brd);color:var(--t2)">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span class="hidden sm:inline">Export</span>
+      </button>
+      <label class="px-3 sm:px-4 py-2 text-sm rounded-lg transition cursor-pointer flex items-center gap-2" style="background:var(--btn-bg);border:1px solid var(--btn-brd);color:var(--t2)">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
-        Import
+        <span class="hidden sm:inline">Import</span>
         <input type="file" accept=".json" onchange="importData(event)" class="hidden">
       </label>
-      <button onclick="generateReport()" class="px-5 py-2 text-sm bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-900 font-semibold rounded-lg transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
+      <button onclick="generateReport()" class="px-4 sm:px-5 py-2 text-sm bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-900 font-semibold rounded-lg transition flex items-center gap-2 shadow-lg shadow-gold-500/20">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-        Print Report
+        <span class="hidden sm:inline">Print Report</span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- ===== PRINT HEADER ===== -->
+<!-- PRINT HEADER -->
 <div class="print-only p-8 border-b-2 border-black">
-  <h1 style="font-family:'Playfair Display',serif; font-size:28px; font-weight:700;">VERITAS AI — Artifact Verification Report</h1>
-  <p style="font-size:13px; color:#555; margin-top:4px;">Generated: <span id="printDate"></span> | Judicial Artifact Authentication Service</p>
-  <hr style="margin-top:12px; border-color:#c9982a;">
+  <h1 style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700">VERITAS AI — Artifact Verification Report</h1>
+  <p style="font-size:13px;color:#555;margin-top:4px">Generated: <span id="printDate"></span> | Judicial Artifact Authentication Service</p>
+  <hr style="margin-top:12px;border-color:#c9982a">
 </div>
 
-<!-- ===== HERO ===== -->
-<section class="grain bg-gradient-to-b from-navy-900/50 to-transparent no-print">
+<!-- HERO -->
+<section class="grain no-print" style="background:linear-gradient(to bottom,var(--hero-from),transparent)">
   <div class="max-w-7xl mx-auto px-6 py-16 text-center">
-    <div class="inline-block px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs tracking-widest uppercase mb-6">Trusted by 200+ Courts Nationwide</div>
-    <h2 class="text-4xl md:text-5xl font-display font-bold text-white leading-tight mb-4">Authenticate Digital Evidence<br><span class="text-gold-400">Before It Enters the Record</span></h2>
-    <p class="font-serif-body text-lg text-navy-300 max-w-2xl mx-auto leading-relaxed">A comprehensive verification framework for courts and law firms to assess whether submitted artifacts — documents, images, audio, and video — are AI-generated, manipulated, or authentic.</p>
+    <div class="inline-block px-4 py-1.5 rounded-full text-xs tracking-widest uppercase mb-6" style="background:var(--tag-bg);border:1px solid var(--tag-brd);color:var(--tgs)">Trusted by 200+ Courts Nationwide</div>
+    <h2 class="text-4xl md:text-5xl font-display font-bold leading-tight mb-4" style="color:var(--t1)">Authenticate Digital Evidence<br><span style="color:var(--tgs)">Before It Enters the Record</span></h2>
+    <p class="font-serif-body text-lg max-w-2xl mx-auto leading-relaxed" style="color:var(--tm)">A comprehensive verification framework for courts and law firms to assess whether submitted artifacts — documents, images, audio, and video — are AI-generated, manipulated, or authentic.</p>
   </div>
 </section>
 
-<!-- ===== NAVIGATION TABS ===== -->
-<nav class="no-print sticky top-0 z-40 bg-navy-950/95 backdrop-blur border-b border-navy-700/30">
+<!-- NAV TABS -->
+<nav class="no-print sticky top-0 z-40 backdrop-blur border-b" style="background:var(--nav-bg);border-color:var(--brd)">
   <div class="max-w-7xl mx-auto px-6 flex gap-1 overflow-x-auto">
-    <button onclick="switchTab('case')" id="tab-case" class="tab-btn tab-active px-5 py-3.5 text-sm font-medium transition whitespace-nowrap">📋 Case Setup</button>
-    <button onclick="switchTab('artifacts')" id="tab-artifacts" class="tab-btn px-5 py-3.5 text-sm font-medium text-navy-400 hover:text-navy-200 transition whitespace-nowrap">📁 Artifact Types</button>
-    <button onclick="switchTab('checklist')" id="tab-checklist" class="tab-btn px-5 py-3.5 text-sm font-medium text-navy-400 hover:text-navy-200 transition whitespace-nowrap">✅ Verification Checklist</button>
-    <button onclick="switchTab('rating')" id="tab-rating" class="tab-btn px-5 py-3.5 text-sm font-medium text-navy-400 hover:text-navy-200 transition whitespace-nowrap">📊 AI Rating</button>
-    <button onclick="switchTab('cases')" id="tab-cases" class="tab-btn px-5 py-3.5 text-sm font-medium text-navy-400 hover:text-navy-200 transition whitespace-nowrap">⚖️ Case Law</button>
-    <button onclick="switchTab('workflow')" id="tab-workflow" class="tab-btn px-5 py-3.5 text-sm font-medium text-navy-400 hover:text-navy-200 transition whitespace-nowrap">🔄 Workflow</button>
+    <button onclick="switchTab('case')" id="tab-case" class="tab-btn tab-active px-5 py-3.5 text-sm font-medium transition whitespace-nowrap" style="color:var(--tgs)">📋 Case Setup</button>
+    <button onclick="switchTab('artifacts')" id="tab-artifacts" class="tab-btn px-5 py-3.5 text-sm font-medium transition whitespace-nowrap" style="color:var(--tf)">📁 Artifact Types</button>
+    <button onclick="switchTab('checklist')" id="tab-checklist" class="tab-btn px-5 py-3.5 text-sm font-medium transition whitespace-nowrap" style="color:var(--tf)">✅ Verification Checklist</button>
+    <button onclick="switchTab('rating')" id="tab-rating" class="tab-btn px-5 py-3.5 text-sm font-medium transition whitespace-nowrap" style="color:var(--tf)">📊 AI Rating</button>
+    <button onclick="switchTab('cases')" id="tab-cases" class="tab-btn px-5 py-3.5 text-sm font-medium transition whitespace-nowrap" style="color:var(--tf)">⚖️ Case Law</button>
+    <button onclick="switchTab('workflow')" id="tab-workflow" class="tab-btn px-5 py-3.5 text-sm font-medium transition whitespace-nowrap" style="color:var(--tf)">🔄 Workflow</button>
   </div>
 </nav>
 
 <main class="max-w-7xl mx-auto px-6 py-10">
 
-<!-- =============================== -->
 <!-- TAB: CASE SETUP -->
-<!-- =============================== -->
 <section id="panel-case" class="tab-panel slide-up">
   <div class="grid lg:grid-cols-3 gap-8">
-    <!-- Case Info Form -->
-    <div class="lg:col-span-2 bg-navy-900/60 border border-navy-700/30 rounded-2xl p-8">
-      <h3 class="font-display text-2xl font-bold text-white mb-1">Case Information</h3>
-      <p class="text-navy-400 text-sm mb-6">Enter case details before beginning artifact verification.</p>
+    <div class="lg:col-span-2 s rounded-2xl p-8">
+      <h3 class="font-display text-2xl font-bold mb-1" style="color:var(--t1)">Case Information</h3>
+      <p class="text-sm mb-6" style="color:var(--tf)">Enter case details before beginning artifact verification.</p>
       <div class="grid md:grid-cols-2 gap-5">
-        <div>
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Case Number</label>
-          <input id="caseNumber" type="text" placeholder="e.g. 2026-CV-04521" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white placeholder-navy-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition">
-        </div>
-        <div>
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Court / Jurisdiction</label>
-          <input id="courtName" type="text" placeholder="e.g. U.S. District Court, N.D. Cal." class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white placeholder-navy-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition">
-        </div>
-        <div>
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Presiding Judge</label>
-          <input id="judgeName" type="text" placeholder="Hon. Jane Smith" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white placeholder-navy-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition">
-        </div>
-        <div>
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Date of Submission</label>
-          <input id="submissionDate" type="date" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition">
-        </div>
-        <div class="md:col-span-2">
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Case Title / Parties</label>
-          <input id="caseTitle" type="text" placeholder="e.g. Smith v. Acme Corp." class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white placeholder-navy-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition">
-        </div>
-        <div class="md:col-span-2">
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Examining Attorney</label>
-          <input id="attorneyName" type="text" placeholder="Name and bar number" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white placeholder-navy-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition">
-        </div>
-        <div class="md:col-span-2">
-          <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1.5">Notes / Description</label>
-          <textarea id="caseNotes" rows="3" placeholder="Brief description of the artifacts under review..." class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-4 py-2.5 text-white placeholder-navy-500 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/20 transition resize-none"></textarea>
-        </div>
+        <div><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Case Number</label><input id="caseNumber" type="text" placeholder="e.g. 2026-CV-04521" class="w-full ti rounded-lg px-4 py-2.5"></div>
+        <div><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Court / Jurisdiction</label><input id="courtName" type="text" placeholder="e.g. U.S. District Court, N.D. Cal." class="w-full ti rounded-lg px-4 py-2.5"></div>
+        <div><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Presiding Judge</label><input id="judgeName" type="text" placeholder="Hon. Jane Smith" class="w-full ti rounded-lg px-4 py-2.5"></div>
+        <div><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Date of Submission</label><input id="submissionDate" type="date" class="w-full ti rounded-lg px-4 py-2.5"></div>
+        <div class="md:col-span-2"><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Case Title / Parties</label><input id="caseTitle" type="text" placeholder="e.g. Smith v. Acme Corp." class="w-full ti rounded-lg px-4 py-2.5"></div>
+        <div class="md:col-span-2"><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Examining Attorney</label><input id="attorneyName" type="text" placeholder="Name and bar number" class="w-full ti rounded-lg px-4 py-2.5"></div>
+        <div class="md:col-span-2"><label class="block text-xs uppercase tracking-wider mb-1.5" style="color:var(--tf)">Notes / Description</label><textarea id="caseNotes" rows="3" placeholder="Brief description of the artifacts under review..." class="w-full ti rounded-lg px-4 py-2.5 resize-none"></textarea></div>
       </div>
       <button onclick="saveCaseInfo()" class="mt-6 px-6 py-2.5 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-900 font-semibold rounded-lg transition shadow-lg shadow-gold-500/20">Save Case Info</button>
     </div>
-    <!-- Quick Stats -->
     <div class="space-y-5">
-      <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-        <div class="text-xs text-navy-400 uppercase tracking-wider mb-3">Verification Progress</div>
-        <div class="text-4xl font-display font-bold text-white mb-1" id="progressPercent">0%</div>
-        <div class="w-full h-2 bg-navy-700/50 rounded-full overflow-hidden mt-3">
-          <div id="progressBar" class="h-full bg-gradient-to-r from-gold-500 to-gold-400 rounded-full rating-bar" style="width:0%"></div>
-        </div>
-        <p class="text-navy-400 text-xs mt-2"><span id="checkedCount">0</span> of <span id="totalCount">0</span> items verified</p>
+      <div class="s rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-wider mb-3" style="color:var(--tf)">Verification Progress</div>
+        <div class="text-4xl font-display font-bold mb-1" style="color:var(--t1)" id="progressPercent">0%</div>
+        <div class="w-full h-2 rounded-full overflow-hidden mt-3" style="background:var(--prg)"><div id="progressBar" class="h-full bg-gradient-to-r from-gold-500 to-gold-400 rounded-full rating-bar" style="width:0%"></div></div>
+        <p class="text-xs mt-2" style="color:var(--tf)"><span id="checkedCount">0</span> of <span id="totalCount">0</span> items verified</p>
       </div>
-      <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-        <div class="text-xs text-navy-400 uppercase tracking-wider mb-3">Overall AI Risk Rating</div>
+      <div class="s rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-wider mb-3" style="color:var(--tf)">Overall AI Risk Rating</div>
         <div class="flex items-center gap-3">
-          <div id="riskIndicator" class="w-14 h-14 rounded-xl bg-navy-700/50 flex items-center justify-center text-2xl font-display font-bold text-navy-400">—</div>
+          <div id="riskIndicator" class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-display font-bold" style="background:var(--bdg);color:var(--tf)">—</div>
           <div>
-            <div id="riskLabel" class="text-lg font-semibold text-navy-300">Not Yet Rated</div>
-            <div id="riskSub" class="text-xs text-navy-500">Complete checklist to generate</div>
+            <div id="riskLabel" class="text-lg font-semibold" style="color:var(--tm)">Not Yet Rated</div>
+            <div id="riskSub" class="text-xs" style="color:var(--tf)">Complete checklist to generate</div>
           </div>
         </div>
       </div>
-      <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-        <div class="text-xs text-navy-400 uppercase tracking-wider mb-3">Artifacts Logged</div>
-        <div class="text-4xl font-display font-bold text-white" id="artifactCount">0</div>
+      <div class="s rounded-2xl p-6">
+        <div class="text-xs uppercase tracking-wider mb-3" style="color:var(--tf)">Artifacts Logged</div>
+        <div class="text-4xl font-display font-bold" style="color:var(--t1)" id="artifactCount">0</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- =============================== -->
 <!-- TAB: ARTIFACT TYPES -->
-<!-- =============================== -->
 <section id="panel-artifacts" class="tab-panel hidden">
-  <h3 class="font-display text-2xl font-bold text-white mb-2">Types of Artifacts Admitted as Evidence</h3>
-  <p class="text-navy-400 font-serif-body mb-8 max-w-3xl">Courts accept many forms of digital evidence under the Federal Rules of Evidence (particularly Rules 901, 902, and 1001–1008). Each type carries unique AI-generation risks that require specific verification approaches.</p>
-
-  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5" id="artifactTypesGrid">
-    <!-- Populated by JS -->
-  </div>
-
-  <!-- Add Custom Artifact -->
-  <div class="mt-8 bg-navy-900/60 border border-dashed border-navy-600/40 rounded-2xl p-6 no-print">
-    <h4 class="font-display text-lg font-semibold text-white mb-4">Log an Artifact for This Case</h4>
+  <h3 class="font-display text-2xl font-bold mb-2" style="color:var(--t1)">Types of Artifacts Admitted as Evidence</h3>
+  <p class="font-serif-body mb-8 max-w-3xl" style="color:var(--tm)">Courts accept many forms of digital evidence under the Federal Rules of Evidence (Rules 901, 902, 1001–1008). Each type carries unique AI-generation risks.</p>
+  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-5" id="artifactTypesGrid"></div>
+  <div class="mt-8 s rounded-2xl p-6 no-print" style="border-style:dashed;border-color:var(--brd-d)">
+    <h4 class="font-display text-lg font-semibold mb-4" style="color:var(--t1)">Log an Artifact for This Case</h4>
     <div class="grid md:grid-cols-4 gap-4">
-      <div>
-        <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1">Artifact Name</label>
-        <input id="newArtifactName" type="text" placeholder="e.g. Exhibit A - Email" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-3 py-2 text-white text-sm placeholder-navy-500 focus:outline-none focus:border-gold-500/50 transition">
-      </div>
-      <div>
-        <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1">Type</label>
-        <select id="newArtifactType" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-gold-500/50 transition">
-          <option value="">Select type...</option>
-        </select>
-      </div>
-      <div>
-        <label class="block text-xs text-navy-400 uppercase tracking-wider mb-1">Submitted By</label>
-        <select id="newArtifactParty" class="w-full bg-navy-800/60 border border-navy-600/30 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-gold-500/50 transition">
-          <option value="Plaintiff">Plaintiff</option>
-          <option value="Defendant">Defendant</option>
-          <option value="Prosecution">Prosecution</option>
-          <option value="Defense">Defense</option>
-          <option value="Court">Court</option>
-          <option value="Third Party">Third Party</option>
-        </select>
-      </div>
-      <div class="flex items-end">
-        <button onclick="addArtifact()" class="w-full px-4 py-2 bg-gold-500/20 hover:bg-gold-500/30 border border-gold-500/30 text-gold-400 rounded-lg text-sm font-medium transition">+ Add Artifact</button>
-      </div>
+      <div><label class="block text-xs uppercase tracking-wider mb-1" style="color:var(--tf)">Artifact Name</label><input id="newArtifactName" type="text" placeholder="e.g. Exhibit A" class="w-full ti rounded-lg px-3 py-2 text-sm"></div>
+      <div><label class="block text-xs uppercase tracking-wider mb-1" style="color:var(--tf)">Type</label><select id="newArtifactType" class="w-full ti rounded-lg px-3 py-2 text-sm"><option value="">Select...</option></select></div>
+      <div><label class="block text-xs uppercase tracking-wider mb-1" style="color:var(--tf)">Submitted By</label>
+        <select id="newArtifactParty" class="w-full ti rounded-lg px-3 py-2 text-sm"><option>Plaintiff</option><option>Defendant</option><option>Prosecution</option><option>Defense</option><option>Court</option><option>Third Party</option></select></div>
+      <div class="flex items-end"><button onclick="addArtifact()" class="w-full px-4 py-2 border rounded-lg text-sm font-medium transition" style="background:var(--tag-bg);border-color:var(--tag-brd);color:var(--tgs)">+ Add Artifact</button></div>
     </div>
     <div id="artifactList" class="mt-5 space-y-2"></div>
   </div>
 </section>
 
-<!-- =============================== -->
-<!-- TAB: VERIFICATION CHECKLIST -->
-<!-- =============================== -->
+<!-- TAB: CHECKLIST -->
 <section id="panel-checklist" class="tab-panel hidden">
   <div class="flex items-start justify-between mb-8">
     <div>
-      <h3 class="font-display text-2xl font-bold text-white mb-2">AI Detection Verification Checklist</h3>
-      <p class="text-navy-400 font-serif-body max-w-2xl">Systematically evaluate each artifact against these verification criteria. Check each item as completed.</p>
+      <h3 class="font-display text-2xl font-bold mb-2" style="color:var(--t1)">AI Detection Verification Checklist</h3>
+      <p class="font-serif-body max-w-2xl" style="color:var(--tm)">Systematically evaluate each artifact against these verification criteria.</p>
     </div>
     <button onclick="resetChecklist()" class="no-print px-4 py-2 text-sm bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 rounded-lg transition">Reset All</button>
   </div>
-
-  <div id="checklistContainer" class="space-y-8">
-    <!-- Populated by JS -->
-  </div>
+  <div id="checklistContainer" class="space-y-8"></div>
 </section>
 
-<!-- =============================== -->
 <!-- TAB: AI RATING -->
-<!-- =============================== -->
 <section id="panel-rating" class="tab-panel hidden">
-  <h3 class="font-display text-2xl font-bold text-white mb-2">AI Generation Probability Rating</h3>
-  <p class="text-navy-400 font-serif-body mb-8 max-w-3xl">Based on your checklist completion and artifact analysis, the system calculates a composite AI-generation risk score for each artifact and the overall case.</p>
-
-  <!-- Rating Scale Legend -->
-  <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6 mb-8">
-    <h4 class="text-sm font-semibold text-navy-300 uppercase tracking-wider mb-4">Rating Scale</h4>
+  <h3 class="font-display text-2xl font-bold mb-2" style="color:var(--t1)">AI Generation Probability Rating</h3>
+  <p class="font-serif-body mb-8 max-w-3xl" style="color:var(--tm)">Based on your checklist and analysis, the system calculates a composite AI-generation risk score.</p>
+  <div class="s rounded-2xl p-6 mb-8">
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color:var(--tm)">Rating Scale</h4>
     <div class="grid grid-cols-5 gap-3">
-      <div class="text-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20">
-        <div class="text-2xl font-display font-bold text-emerald-400">A</div>
-        <div class="text-xs text-emerald-300 mt-1">Authentic</div>
-        <div class="text-xs text-navy-400 mt-0.5">0–15% AI risk</div>
-      </div>
-      <div class="text-center p-3 rounded-xl bg-teal-500/10 border border-teal-500/20">
-        <div class="text-2xl font-display font-bold text-teal-400">B</div>
-        <div class="text-xs text-teal-300 mt-1">Likely Authentic</div>
-        <div class="text-xs text-navy-400 mt-0.5">16–35% AI risk</div>
-      </div>
-      <div class="text-center p-3 rounded-xl bg-amber-500/10 border border-amber-500/20">
-        <div class="text-2xl font-display font-bold text-amber-400">C</div>
-        <div class="text-xs text-amber-300 mt-1">Inconclusive</div>
-        <div class="text-xs text-navy-400 mt-0.5">36–55% AI risk</div>
-      </div>
-      <div class="text-center p-3 rounded-xl bg-orange-500/10 border border-orange-500/20">
-        <div class="text-2xl font-display font-bold text-orange-400">D</div>
-        <div class="text-xs text-orange-300 mt-1">Likely AI-Generated</div>
-        <div class="text-xs text-navy-400 mt-0.5">56–80% AI risk</div>
-      </div>
-      <div class="text-center p-3 rounded-xl bg-red-500/10 border border-red-500/20">
-        <div class="text-2xl font-display font-bold text-red-400">F</div>
-        <div class="text-xs text-red-300 mt-1">AI-Generated</div>
-        <div class="text-xs text-navy-400 mt-0.5">81–100% AI risk</div>
-      </div>
+      <div class="text-center p-3 rounded-xl" style="background:var(--re);border:1px solid var(--reb)"><div class="text-2xl font-display font-bold text-emerald-500">A</div><div class="text-xs text-emerald-500 mt-1">Authentic</div><div class="text-xs mt-0.5" style="color:var(--tf)">0–15%</div></div>
+      <div class="text-center p-3 rounded-xl" style="background:var(--rt);border:1px solid var(--rtb)"><div class="text-2xl font-display font-bold text-teal-500">B</div><div class="text-xs text-teal-500 mt-1">Likely Authentic</div><div class="text-xs mt-0.5" style="color:var(--tf)">16–35%</div></div>
+      <div class="text-center p-3 rounded-xl" style="background:var(--ra);border:1px solid var(--rab)"><div class="text-2xl font-display font-bold text-amber-500">C</div><div class="text-xs text-amber-500 mt-1">Inconclusive</div><div class="text-xs mt-0.5" style="color:var(--tf)">36–55%</div></div>
+      <div class="text-center p-3 rounded-xl" style="background:var(--ro);border:1px solid var(--rob)"><div class="text-2xl font-display font-bold text-orange-500">D</div><div class="text-xs text-orange-500 mt-1">Likely AI</div><div class="text-xs mt-0.5" style="color:var(--tf)">56–80%</div></div>
+      <div class="text-center p-3 rounded-xl" style="background:var(--rr);border:1px solid var(--rrb)"><div class="text-2xl font-display font-bold text-red-500">F</div><div class="text-xs text-red-500 mt-1">AI-Generated</div><div class="text-xs mt-0.5" style="color:var(--tf)">81–100%</div></div>
     </div>
   </div>
-
-  <!-- Per-Artifact Rating -->
-  <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6 mb-6">
-    <h4 class="text-sm font-semibold text-navy-300 uppercase tracking-wider mb-4">Rate Individual Artifacts</h4>
-    <div id="artifactRatingList" class="space-y-4">
-      <p class="text-navy-500 text-sm italic">Add artifacts in the "Artifact Types" tab first, then rate them here.</p>
-    </div>
+  <div class="s rounded-2xl p-6 mb-6">
+    <h4 class="text-sm font-semibold uppercase tracking-wider mb-4" style="color:var(--tm)">Rate Individual Artifacts</h4>
+    <div id="artifactRatingList" class="space-y-4"><p class="text-sm italic" style="color:var(--tf)">Add artifacts in the "Artifact Types" tab first.</p></div>
   </div>
-
-  <!-- Overall Rating Display -->
-  <div class="bg-gradient-to-br from-navy-800 to-navy-900 border border-navy-700/30 rounded-2xl p-8 text-center">
-    <div class="text-xs text-navy-400 uppercase tracking-widest mb-3">Composite Case Rating</div>
-    <div id="overallRatingBadge" class="inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-navy-700/50 text-5xl font-display font-bold text-navy-400 mb-3">—</div>
-    <div id="overallRatingLabel" class="text-lg text-navy-300 font-medium">Complete ratings to calculate</div>
-    <div id="overallRatingPercent" class="text-sm text-navy-500 mt-1"></div>
+  <div class="s rounded-2xl p-8 text-center" style="background:linear-gradient(135deg,var(--bg-e),var(--bg-s))">
+    <div class="text-xs uppercase tracking-widest mb-3" style="color:var(--tf)">Composite Case Rating</div>
+    <div id="overallRatingBadge" class="inline-flex items-center justify-center w-24 h-24 rounded-2xl text-5xl font-display font-bold mb-3" style="background:var(--bdg);color:var(--tf)">—</div>
+    <div id="overallRatingLabel" class="text-lg font-medium" style="color:var(--tm)">Complete ratings to calculate</div>
+    <div id="overallRatingPercent" class="text-sm mt-1" style="color:var(--tf)"></div>
   </div>
 </section>
 
-<!-- =============================== -->
 <!-- TAB: CASE LAW -->
-<!-- =============================== -->
 <section id="panel-cases" class="tab-panel hidden">
-  <h3 class="font-display text-2xl font-bold text-white mb-2">Landmark Cases & Precedents</h3>
-  <p class="text-navy-400 font-serif-body mb-8 max-w-3xl">Key judicial decisions addressing AI-generated evidence, deepfakes, and digital artifact authentication that inform current verification standards.</p>
-
-  <div class="grid md:grid-cols-2 gap-5" id="caseLawGrid">
-    <!-- Populated by JS -->
-  </div>
-
-  <div class="mt-10 bg-navy-900/60 border border-gold-700/20 rounded-2xl p-8">
-    <h4 class="font-display text-xl font-semibold text-gold-400 mb-4">Key Legal Standards for AI Evidence</h4>
-    <div class="grid md:grid-cols-2 gap-6 font-serif-body text-navy-300 text-sm leading-relaxed">
+  <h3 class="font-display text-2xl font-bold mb-2" style="color:var(--t1)">Landmark Cases & Precedents</h3>
+  <p class="font-serif-body mb-8 max-w-3xl" style="color:var(--tm)">Key judicial decisions addressing AI-generated evidence and digital artifact authentication.</p>
+  <div class="grid md:grid-cols-2 gap-5" id="caseLawGrid"></div>
+  <div class="mt-10 s rounded-2xl p-8" style="border-color:var(--brd-a)">
+    <h4 class="font-display text-xl font-semibold mb-4" style="color:var(--tgs)">Key Legal Standards for AI Evidence</h4>
+    <div class="grid md:grid-cols-2 gap-6 font-serif-body text-sm leading-relaxed" style="color:var(--tm)">
       <div>
-        <h5 class="text-white font-semibold text-base mb-2">Federal Rules of Evidence</h5>
-        <p class="mb-2"><strong class="text-gold-400">Rule 901(a):</strong> Requires that evidence be authenticated — the proponent must produce evidence sufficient to support a finding that the item is what they claim it is.</p>
-        <p class="mb-2"><strong class="text-gold-400">Rule 901(b)(9):</strong> Allows authentication through evidence describing a process or system and showing it produces an accurate result — directly applicable to AI detection tools.</p>
-        <p><strong class="text-gold-400">Rule 702 (Daubert Standard):</strong> Expert testimony on AI detection must be based on sufficient facts, reliable principles, and reliable application of those principles to the case facts.</p>
+        <h5 class="font-semibold text-base mb-2" style="color:var(--t1)">Federal Rules of Evidence</h5>
+        <p class="mb-2"><strong style="color:var(--tgs)">Rule 901(a):</strong> Requires that evidence be authenticated — the proponent must produce evidence sufficient to support a finding that the item is what they claim.</p>
+        <p class="mb-2"><strong style="color:var(--tgs)">Rule 901(b)(9):</strong> Allows authentication through evidence describing a process or system and showing it produces an accurate result.</p>
+        <p><strong style="color:var(--tgs)">Rule 702 (Daubert):</strong> Expert testimony on AI detection must be based on sufficient facts, reliable principles, and reliable application.</p>
       </div>
       <div>
-        <h5 class="text-white font-semibold text-base mb-2">Emerging Standards</h5>
-        <p class="mb-2"><strong class="text-gold-400">C2PA / Content Credentials:</strong> Industry standard for cryptographic provenance metadata embedded in media files at creation — increasingly referenced in judicial guidance.</p>
-        <p class="mb-2"><strong class="text-gold-400">NIST AI 100-4:</strong> National Institute of Standards and Technology framework for reducing risks of synthetic content, including detection benchmarks.</p>
-        <p><strong class="text-gold-400">ABA Resolution 604 (2024):</strong> American Bar Association urging courts to develop protocols for identifying and addressing AI-generated evidence.</p>
+        <h5 class="font-semibold text-base mb-2" style="color:var(--t1)">Emerging Standards</h5>
+        <p class="mb-2"><strong style="color:var(--tgs)">C2PA / Content Credentials:</strong> Cryptographic provenance metadata embedded in media files at creation.</p>
+        <p class="mb-2"><strong style="color:var(--tgs)">NIST AI 100-4:</strong> Framework for reducing risks of synthetic content, including detection benchmarks.</p>
+        <p><strong style="color:var(--tgs)">ABA Resolution 604 (2024):</strong> Urging courts to develop protocols for AI-generated evidence.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- =============================== -->
 <!-- TAB: WORKFLOW -->
-<!-- =============================== -->
 <section id="panel-workflow" class="tab-panel hidden">
-  <h3 class="font-display text-2xl font-bold text-white mb-2">End-to-End Verification Workflow</h3>
-  <p class="text-navy-400 font-serif-body mb-8 max-w-3xl">Follow this step-by-step process for each artifact submitted as evidence. The workflow ensures procedural compliance and defensible verification.</p>
-
-  <div class="space-y-4" id="workflowSteps">
-    <!-- Populated by JS -->
-  </div>
-
-  <!-- Best Practices -->
+  <h3 class="font-display text-2xl font-bold mb-2" style="color:var(--t1)">End-to-End Verification Workflow</h3>
+  <p class="font-serif-body mb-8 max-w-3xl" style="color:var(--tm)">Follow this step-by-step process for each artifact submitted as evidence.</p>
+  <div class="space-y-4" id="workflowSteps"></div>
   <div class="mt-10 grid md:grid-cols-2 gap-6">
-    <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-      <h4 class="font-display text-lg font-semibold text-gold-400 mb-4">⚠️ Common Pitfalls</h4>
-      <div class="space-y-3 text-sm font-serif-body text-navy-300">
+    <div class="s rounded-2xl p-6">
+      <h4 class="font-display text-lg font-semibold mb-4" style="color:var(--tgs)">⚠️ Common Pitfalls</h4>
+      <div class="space-y-3 text-sm font-serif-body" style="color:var(--tm)">
         <div class="flex gap-3"><span class="text-red-400 mt-0.5">✕</span><span>Relying on a single AI detection tool — different tools have different false-positive rates</span></div>
         <div class="flex gap-3"><span class="text-red-400 mt-0.5">✕</span><span>Failing to preserve the original file (compression/conversion destroys metadata)</span></div>
         <div class="flex gap-3"><span class="text-red-400 mt-0.5">✕</span><span>Not documenting the chain of custody for digital evidence</span></div>
@@ -359,9 +294,9 @@ tailwind.config = {
         <div class="flex gap-3"><span class="text-red-400 mt-0.5">✕</span><span>Treating AI detection confidence scores as definitive proof</span></div>
       </div>
     </div>
-    <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-      <h4 class="font-display text-lg font-semibold text-gold-400 mb-4">✓ Best Practices</h4>
-      <div class="space-y-3 text-sm font-serif-body text-navy-300">
+    <div class="s rounded-2xl p-6">
+      <h4 class="font-display text-lg font-semibold mb-4" style="color:var(--tgs)">✓ Best Practices</h4>
+      <div class="space-y-3 text-sm font-serif-body" style="color:var(--tm)">
         <div class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span><span>Use at least 3 independent AI detection tools and cross-reference results</span></div>
         <div class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span><span>Always obtain and preserve the original native file format</span></div>
         <div class="flex gap-3"><span class="text-emerald-400 mt-0.5">✓</span><span>Establish and document digital chain of custody with timestamps and hashes</span></div>
@@ -375,505 +310,62 @@ tailwind.config = {
 
 </main>
 
-<!-- ===== FOOTER ===== -->
-<footer class="no-print border-t border-navy-800/50 mt-16">
+<footer class="no-print border-t mt-16" style="border-color:var(--brd)">
   <div class="max-w-7xl mx-auto px-6 py-8 text-center">
-    <p class="text-navy-500 text-xs">VERITAS AI — Judicial Artifact Authentication Service. This tool provides a structured framework for AI artifact verification. It does not constitute legal advice. Always consult with qualified legal counsel and digital forensics experts.</p>
+    <p class="text-xs" style="color:var(--tf)">VERITAS AI — Judicial Artifact Authentication Service. This tool provides a structured framework and does not constitute legal advice.</p>
   </div>
 </footer>
 
 <script>
-// ========================================
-// DATA
-// ========================================
-const ARTIFACT_TYPES = [
-  { id:'doc', icon:'📄', name:'Documents & Text', desc:'Contracts, emails, letters, briefs, affidavits, depositions, chat logs, social media posts', risks:['AI-written legal documents','ChatGPT-generated fake correspondence','Fabricated contracts with synthetic signatures'], checks:['Linguistic analysis for AI patterns','Stylometric comparison with known writings','Metadata timestamp verification','Font/formatting consistency analysis'] },
-  { id:'img', icon:'🖼️', name:'Photographs & Images', desc:'Crime scene photos, surveillance stills, medical images, satellite imagery, screenshots', risks:['Deepfake face swaps','AI-generated photorealistic scenes','Manipulated/doctored photographs','GAN-generated synthetic faces'], checks:['EXIF metadata analysis','Error Level Analysis (ELA)','GAN fingerprint detection','Reverse image search','C2PA credential verification'] },
-  { id:'vid', icon:'🎥', name:'Video Evidence', desc:'Surveillance footage, bodycam recordings, dashcam video, depositions, social media clips', risks:['Deepfake video synthesis','Lip-sync manipulation','Frame injection/deletion','AI-generated synthetic video'], checks:['Temporal consistency analysis','Audio-visual sync verification','Compression artifact analysis','Frame-level forensic examination','Facial landmark consistency'] },
-  { id:'aud', icon:'🎙️', name:'Audio Recordings', desc:'Phone calls, voicemails, recorded conversations, 911 calls, wiretaps', risks:['Voice cloning/synthesis','AI-generated speech','Spliced audio segments','Background noise manipulation'], checks:['Spectral analysis','Voice biometric comparison','Environmental acoustic analysis','Compression artifact patterns','Temporal continuity verification'] },
-  { id:'fin', icon:'💰', name:'Financial Records', desc:'Bank statements, invoices, tax returns, transaction logs, ledgers', risks:['AI-generated fake financial statements','Synthetic transaction histories','Fabricated invoices with realistic formatting'], checks:['Cross-reference with financial institutions','Mathematical consistency verification','Template/format analysis','Digital signature verification','Timestamp and sequence analysis'] },
-  { id:'med', icon:'🏥', name:'Medical Records', desc:'Lab results, imaging scans, physician notes, prescriptions, pathology reports', risks:['AI-generated fake diagnoses','Synthetic medical imaging','Fabricated lab result data'], checks:['Cross-reference with healthcare provider systems','DICOM metadata verification (for imaging)','Clinical consistency review','Provider credential verification'] },
-  { id:'dig', icon:'💻', name:'Digital Communications', desc:'Emails, text messages, social media DMs, Slack/Teams messages, forum posts', risks:['AI-written fake conversations','Fabricated message threads','Manipulated timestamps and metadata'], checks:['Header analysis (email)','Server-side log verification','Platform API authentication','Linguistic consistency analysis','Device forensic correlation'] },
-  { id:'bio', icon:'🧬', name:'Forensic / Scientific', desc:'DNA analysis reports, fingerprint comparisons, ballistic reports, toxicology results', risks:['AI-generated fake analysis reports','Manipulated data visualizations','Synthetic statistical outputs'], checks:['Laboratory accreditation verification','Methodology peer review','Raw data integrity check','Chain of custody documentation','Reproducibility assessment'] },
-  { id:'web', icon:'🌐', name:'Web & Social Media', desc:'Website captures, archived pages, social media profiles, online reviews, domain records', risks:['AI-generated fake websites','Fabricated social profiles','Synthetic reviews and posts','Manipulated web archives'], checks:['Wayback Machine cross-reference','WHOIS and DNS record verification','Platform API verification','HTML source analysis','Screenshot vs. live comparison'] }
-];
+const ARTIFACT_TYPES=[{id:'doc',icon:'📄',name:'Documents & Text',desc:'Contracts, emails, letters, briefs, affidavits, depositions, chat logs, social media posts',risks:['AI-written legal documents','ChatGPT-generated fake correspondence','Fabricated contracts with synthetic signatures'],checks:['Linguistic analysis for AI patterns','Stylometric comparison with known writings','Metadata timestamp verification','Font/formatting consistency analysis']},{id:'img',icon:'🖼️',name:'Photographs & Images',desc:'Crime scene photos, surveillance stills, medical images, satellite imagery, screenshots',risks:['Deepfake face swaps','AI-generated photorealistic scenes','Manipulated/doctored photographs','GAN-generated synthetic faces'],checks:['EXIF metadata analysis','Error Level Analysis (ELA)','GAN fingerprint detection','Reverse image search','C2PA credential verification']},{id:'vid',icon:'🎥',name:'Video Evidence',desc:'Surveillance footage, bodycam recordings, dashcam video, depositions, social media clips',risks:['Deepfake video synthesis','Lip-sync manipulation','Frame injection/deletion','AI-generated synthetic video'],checks:['Temporal consistency analysis','Audio-visual sync verification','Compression artifact analysis','Frame-level forensic examination','Facial landmark consistency']},{id:'aud',icon:'🎙️',name:'Audio Recordings',desc:'Phone calls, voicemails, recorded conversations, 911 calls, wiretaps',risks:['Voice cloning/synthesis','AI-generated speech','Spliced audio segments','Background noise manipulation'],checks:['Spectral analysis','Voice biometric comparison','Environmental acoustic analysis','Compression artifact patterns','Temporal continuity verification']},{id:'fin',icon:'💰',name:'Financial Records',desc:'Bank statements, invoices, tax returns, transaction logs, ledgers',risks:['AI-generated fake financial statements','Synthetic transaction histories','Fabricated invoices'],checks:['Cross-reference with financial institutions','Mathematical consistency verification','Template/format analysis','Digital signature verification','Timestamp and sequence analysis']},{id:'med',icon:'🏥',name:'Medical Records',desc:'Lab results, imaging scans, physician notes, prescriptions, pathology reports',risks:['AI-generated fake diagnoses','Synthetic medical imaging','Fabricated lab result data'],checks:['Cross-reference with healthcare providers','DICOM metadata verification','Clinical consistency review','Provider credential verification']},{id:'dig',icon:'💻',name:'Digital Communications',desc:'Emails, text messages, social media DMs, Slack/Teams messages, forum posts',risks:['AI-written fake conversations','Fabricated message threads','Manipulated timestamps'],checks:['Header analysis (email)','Server-side log verification','Platform API authentication','Linguistic consistency analysis','Device forensic correlation']},{id:'bio',icon:'🧬',name:'Forensic / Scientific',desc:'DNA analysis reports, fingerprint comparisons, ballistic reports, toxicology results',risks:['AI-generated fake analysis reports','Manipulated data visualizations','Synthetic statistical outputs'],checks:['Laboratory accreditation verification','Methodology peer review','Raw data integrity check','Chain of custody documentation','Reproducibility assessment']},{id:'web',icon:'🌐',name:'Web & Social Media',desc:'Website captures, archived pages, social media profiles, online reviews, domain records',risks:['AI-generated fake websites','Fabricated social profiles','Synthetic reviews and posts'],checks:['Wayback Machine cross-reference','WHOIS/DNS record verification','Platform API verification','HTML source analysis','Screenshot vs. live comparison']}];
+const CHECKLIST_SECTIONS=[{title:'1. Initial Receipt & Chain of Custody',items:[{id:'c1',text:'Original file obtained in native format (not screenshot/printout)'},{id:'c2',text:'Cryptographic hash (SHA-256) calculated and recorded at receipt'},{id:'c3',text:'Chain of custody log initiated with date, time, handler, method'},{id:'c4',text:'Source documented (device, account, platform, IP address)'},{id:'c5',text:'Original storage medium preserved or forensic image created'}]},{title:'2. Metadata & Provenance Analysis',items:[{id:'c6',text:'File metadata extracted and analyzed (creation date, author, software)'},{id:'c7',text:'EXIF data reviewed for images (GPS, camera, lens, timestamp)'},{id:'c8',text:'C2PA / Content Credentials checked for provenance'},{id:'c9',text:'Metadata consistency verified (no conflicting timestamps)'},{id:'c10',text:'Digital signatures or certificates validated where present'}]},{title:'3. AI Detection Tool Analysis',items:[{id:'c11',text:'Submitted to AI detection tool #1 (e.g., Originality.ai, GPTZero)'},{id:'c12',text:'Submitted to independent AI detection tool #2 for cross-validation'},{id:'c13',text:'Submitted to independent AI detection tool #3 for triangulation'},{id:'c14',text:'Detection confidence scores documented from all tools'},{id:'c15',text:'False positive/negative rates documented and disclosed'},{id:'c16',text:'Tool versions and dates of analysis recorded'}]},{title:'4. Content-Specific Forensic Analysis',items:[{id:'c17',text:'Linguistic/stylometric analysis performed for text artifacts'},{id:'c18',text:'Error Level Analysis (ELA) performed for images'},{id:'c19',text:'Spectral and waveform analysis performed for audio'},{id:'c20',text:'Frame-level temporal analysis performed for video'},{id:'c21',text:'Statistical anomaly detection for data/financial artifacts'},{id:'c22',text:'Reverse search conducted against known databases'}]},{title:'5. Corroboration & Cross-Referencing',items:[{id:'c23',text:'Artifact corroborated against independent external sources'},{id:'c24',text:'Witness or creator identified and available for deposition'},{id:'c25',text:'Originating device/account forensically examined'},{id:'c26',text:'Timeline consistency verified against other case evidence'},{id:'c27',text:'Opposing party given opportunity to examine and challenge'}]},{title:'6. Expert Review & Documentation',items:[{id:'c28',text:'Qualified digital forensics expert retained'},{id:'c29',text:'Expert report meets Daubert/Frye standard requirements'},{id:'c30',text:'All tools, methods, procedures documented in detail'},{id:'c31',text:'Limitations and uncertainty margins clearly stated'},{id:'c32',text:'Final authenticity determination with supporting rationale'},{id:'c33',text:'Complete verification file assembled for court submission'}]}];
+const CASE_LAW=[{name:'Mata v. Avianca, Inc.',cite:'2023 WL 3696209 (S.D.N.Y. 2023)',court:'U.S. District Court, S.D.N.Y.',summary:'Attorney sanctioned for submitting AI-fabricated case citations from ChatGPT. $5,000 fine imposed.',impact:'Established attorneys bear full responsibility for verifying AI-generated content. Led to AI disclosure requirements.',tag:'Sanctions'},{name:'United States v. Google LLC',cite:'No. 1:20-cv-03010 (D.D.C. 2024)',court:'U.S. District Court, D.D.C.',summary:'Antitrust trial raised questions about digital communication authenticity, highlighting verification needs.',impact:'Reinforced metadata verification and chain of custody importance for digital evidence.',tag:'Digital Evidence'},{name:'People v. Wakefield',cite:'(Cal. Super. Ct. 2024)',court:'California Superior Court',summary:'Defense challenged audio evidence as potentially AI voice-cloned. Court required expert testimony.',impact:'Set precedent for considering AI voice synthesis when evaluating audio admissibility.',tag:'Audio/Deepfake'},{name:'Thaler v. Perlmutter',cite:'No. 1:22-cv-01564 (D.D.C. 2023)',court:'U.S. District Court, D.D.C.',summary:'Court ruled AI-generated artwork cannot receive copyright — copyright requires human authorship.',impact:'Clarified legal status of AI-generated works for evidence authentication purposes.',tag:'AI Authorship'},{name:'Dobbs-related Deepfake Cases',cite:'Various State Courts (2024-2025)',court:'Multiple Jurisdictions',summary:'Deepfake videos and AI images in family law and political proceedings spurred new protocols.',impact:'Spurred judicial guidelines for deepfake detection and mandatory AI verification.',tag:'Deepfake'},{name:'Ex parte Allen (Re: AI Briefs)',cite:'Texas Court of Appeals (2024)',court:'Texas Court of Appeals',summary:'Appellate court established requirements for attorneys to certify human-verified legal research.',impact:'Created certification model adopted by multiple jurisdictions for AI-assisted filings.',tag:'AI Certification'}];
+const WORKFLOW_STEPS=[{step:1,title:'Receive & Preserve',desc:'Obtain artifact in original native format. Calculate SHA-256 hash immediately. Initiate chain of custody log. Create forensic copy.',duration:'Day 1'},{step:2,title:'Preliminary Assessment',desc:'Identify artifact type and applicable protocols. Determine AI generation risks. Select detection tools and methods.',duration:'Day 1-2'},{step:3,title:'Metadata Extraction',desc:'Extract all metadata (EXIF, document properties, file system data). Check for C2PA credentials. Identify anomalies.',duration:'Day 2-3'},{step:4,title:'Multi-Tool AI Detection',desc:'Submit to minimum 3 independent AI detection tools. Document scores, versions, and limitations. Cross-reference.',duration:'Day 3-5'},{step:5,title:'Forensic Deep-Dive',desc:'Content-specific forensic analysis (ELA for images, spectral for audio, stylometric for text).',duration:'Day 5-8'},{step:6,title:'Corroboration',desc:'Cross-reference against independent sources. Verify with originating device. Check timeline consistency.',duration:'Day 8-10'},{step:7,title:'Expert Review',desc:'Qualified forensics expert performs independent analysis. Report meets Daubert standard.',duration:'Day 10-14'},{step:8,title:'Rating & Report',desc:'Assign AI Generation Probability Rating (A-F). Compile verification file. Prepare court-ready report.',duration:'Day 14-16'}];
 
-const CHECKLIST_SECTIONS = [
-  { title:'1. Initial Receipt & Chain of Custody', items:[
-    {id:'c1',text:'Original file obtained in native format (not screenshot/printout)'},
-    {id:'c2',text:'Cryptographic hash (SHA-256) calculated and recorded at time of receipt'},
-    {id:'c3',text:'Chain of custody log initiated with date, time, handler, and method of transfer'},
-    {id:'c4',text:'Source of artifact documented (device, account, platform, IP address)'},
-    {id:'c5',text:'Original storage medium preserved or forensic image created'},
-  ]},
-  { title:'2. Metadata & Provenance Analysis', items:[
-    {id:'c6',text:'File metadata extracted and analyzed (creation date, author, software, device info)'},
-    {id:'c7',text:'EXIF data reviewed for images (GPS, camera model, lens, timestamp)'},
-    {id:'c8',text:'C2PA / Content Credentials checked for provenance information'},
-    {id:'c9',text:'Metadata consistency verified (no conflicting timestamps or tool signatures)'},
-    {id:'c10',text:'Digital signatures or certificates validated where present'},
-  ]},
-  { title:'3. AI Detection Tool Analysis', items:[
-    {id:'c11',text:'Artifact submitted to AI text detection tool (e.g., Originality.ai, GPTZero, Turnitin)'},
-    {id:'c12',text:'Artifact submitted to second independent AI detection tool for cross-validation'},
-    {id:'c13',text:'Artifact submitted to third independent AI detection tool for triangulation'},
-    {id:'c14',text:'Detection confidence scores documented from all tools used'},
-    {id:'c15',text:'False positive/negative rates of tools used documented and disclosed'},
-    {id:'c16',text:'Detection tool versions and dates of analysis recorded'},
-  ]},
-  { title:'4. Content-Specific Forensic Analysis', items:[
-    {id:'c17',text:'Linguistic/stylometric analysis performed for text-based artifacts'},
-    {id:'c18',text:'Error Level Analysis (ELA) performed for images'},
-    {id:'c19',text:'Spectral and waveform analysis performed for audio'},
-    {id:'c20',text:'Frame-level temporal analysis performed for video'},
-    {id:'c21',text:'Statistical anomaly detection applied to data/financial artifacts'},
-    {id:'c22',text:'Reverse search conducted (images, text passages) against known databases'},
-  ]},
-  { title:'5. Corroboration & Cross-Referencing', items:[
-    {id:'c23',text:'Artifact corroborated against independent external sources'},
-    {id:'c24',text:'Witness or creator of artifact identified and available for deposition'},
-    {id:'c25',text:'Device/account from which artifact originated forensically examined'},
-    {id:'c26',text:'Timeline consistency verified against other case evidence'},
-    {id:'c27',text:'Opposing party given opportunity to examine and challenge artifact'},
-  ]},
-  { title:'6. Expert Review & Documentation', items:[
-    {id:'c28',text:'Qualified digital forensics expert retained for independent analysis'},
-    {id:'c29',text:'Expert report prepared meeting Daubert/Frye standard requirements'},
-    {id:'c30',text:'All tools, methods, and procedures documented in detail'},
-    {id:'c31',text:'Limitations and uncertainty margins clearly stated in findings'},
-    {id:'c32',text:'Final authenticity determination made with supporting rationale'},
-    {id:'c33',text:'Complete verification file assembled for court submission'},
-  ]}
-];
+let state={caseInfo:{},artifacts:[],checklist:{},ratings:{},workflowChecks:{}};
 
-const CASE_LAW = [
-  { name:'Mata v. Avianca, Inc.', cite:'2023 WL 3696209 (S.D.N.Y. 2023)', court:'U.S. District Court, S.D.N.Y.', summary:'Attorney sanctioned for submitting a legal brief containing AI-fabricated case citations generated by ChatGPT. The court imposed a $5,000 fine and required the attorney to notify judges cited in the fabricated cases.', impact:'Established that attorneys bear full responsibility for verifying AI-generated content before court submission. Led to widespread adoption of AI disclosure requirements.', tag:'Sanctions' },
-  { name:'United States v. Google LLC', cite:'No. 1:20-cv-03010 (D.D.C. 2024)', court:'U.S. District Court, D.D.C.', summary:'In the landmark antitrust trial, questions arose about the authenticity of digital communications submitted as evidence, highlighting the need for robust verification of electronic documents.', impact:'Reinforced the importance of metadata verification and chain of custody for digital evidence in high-profile federal litigation.', tag:'Digital Evidence' },
-  { name:'People v. Wakefield', cite:'(Cal. Super. Ct. 2024)', court:'California Superior Court', summary:'Defense challenged prosecution\'s audio evidence as potentially AI-generated using voice cloning technology. Court required expert testimony on audio authentication methods.', impact:'Set precedent requiring courts to consider AI voice synthesis capabilities when evaluating audio evidence admissibility.', tag:'Audio/Deepfake' },
-  { name:'Thaler v. Perlmutter', cite:'No. 1:22-cv-01564 (D.D.C. 2023)', court:'U.S. District Court, D.D.C.', summary:'Court ruled that AI-generated artwork cannot receive copyright protection, as copyright requires human authorship. The decision addressed fundamental questions about AI-created content.', impact:'Clarified legal status of AI-generated works, relevant to determining whether submitted evidence was human-created or AI-generated.', tag:'AI Authorship' },
-  { name:'Dobbs-related Deepfake Cases', cite:'Various State Courts (2024-2025)', court:'Multiple Jurisdictions', summary:'Series of cases involving deepfake videos and AI-manipulated images submitted in family law and political proceedings, leading courts to develop new authentication protocols.', impact:'Spurred development of judicial guidelines for deepfake detection and mandatory AI verification requirements in sensitive proceedings.', tag:'Deepfake' },
-  { name:'Ex parte Allen (Re: AI Briefs)', cite:'Texas Court of Appeals (2024)', court:'Texas Court of Appeals', summary:'Appellate court addressed the issue of AI-generated legal arguments in submitted briefs, establishing requirements for attorneys to certify that legal research and citations have been human-verified.', impact:'Created certification requirement model adopted by multiple jurisdictions for AI-assisted legal filings.', tag:'AI Certification' }
-];
+function toggleTheme(){const h=document.documentElement;const n=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',n);try{localStorage.setItem('veritas-theme',n)}catch(e){}}
+function loadTheme(){try{const s=localStorage.getItem('veritas-theme');if(s)document.documentElement.setAttribute('data-theme',s)}catch(e){}}
 
-const WORKFLOW_STEPS = [
-  { step:1, title:'Receive & Preserve', desc:'Obtain artifact in original native format. Calculate SHA-256 hash immediately. Initiate chain of custody log. Create forensic copy for analysis — never modify the original.', duration:'Day 1' },
-  { step:2, title:'Preliminary Assessment', desc:'Identify artifact type and applicable verification protocols. Determine which AI generation risks apply. Select appropriate detection tools and forensic methods.', duration:'Day 1-2' },
-  { step:3, title:'Metadata Extraction', desc:'Extract all available metadata (EXIF, document properties, file system data). Check for C2PA content credentials. Identify any inconsistencies or anomalies.', duration:'Day 2-3' },
-  { step:4, title:'Multi-Tool AI Detection', desc:'Submit artifact to minimum 3 independent AI detection tools. Document confidence scores, tool versions, and known limitations. Cross-reference results for consensus.', duration:'Day 3-5' },
-  { step:5, title:'Forensic Deep-Dive', desc:'Apply content-specific forensic analysis (ELA for images, spectral for audio, stylometric for text). Examine for artifacts of AI generation or manipulation.', duration:'Day 5-8' },
-  { step:6, title:'Corroboration', desc:'Cross-reference artifact against independent sources. Verify with originating device/account. Check timeline consistency with other case evidence.', duration:'Day 8-10' },
-  { step:7, title:'Expert Review', desc:'Qualified digital forensics expert performs independent analysis. Prepares report meeting Daubert standard. Documents methodology, findings, and limitations.', duration:'Day 10-14' },
-  { step:8, title:'Rating & Report', desc:'Assign AI Generation Probability Rating (A-F). Compile complete verification file. Prepare court-ready authentication report with all supporting documentation.', duration:'Day 14-16' }
-];
+function switchTab(tab){document.querySelectorAll('.tab-panel').forEach(p=>p.classList.add('hidden'));document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('tab-active');b.style.color='var(--tf)'});document.getElementById(`panel-${tab}`).classList.remove('hidden');const btn=document.getElementById(`tab-${tab}`);btn.classList.add('tab-active')}
 
-// ========================================
-// STATE
-// ========================================
-let state = {
-  caseInfo: {},
-  artifacts: [],
-  checklist: {},
-  ratings: {},
-  workflowChecks: {}
-};
+function saveCaseInfo(){state.caseInfo={caseNumber:document.getElementById('caseNumber').value,courtName:document.getElementById('courtName').value,judgeName:document.getElementById('judgeName').value,submissionDate:document.getElementById('submissionDate').value,caseTitle:document.getElementById('caseTitle').value,attorneyName:document.getElementById('attorneyName').value,caseNotes:document.getElementById('caseNotes').value};saveState();showToast('Case information saved')}
+function loadCaseInfo(){if(state.caseInfo)for(const[k,v]of Object.entries(state.caseInfo)){const el=document.getElementById(k);if(el)el.value=v||''}}
 
-// ========================================
-// TAB SWITCHING
-// ========================================
-function switchTab(tab) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
-  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('tab-active'); b.classList.add('text-navy-400'); });
-  document.getElementById(`panel-${tab}`).classList.remove('hidden');
-  const btn = document.getElementById(`tab-${tab}`);
-  btn.classList.add('tab-active');
-  btn.classList.remove('text-navy-400');
-}
+function renderArtifactTypes(){const g=document.getElementById('artifactTypesGrid');g.innerHTML=ARTIFACT_TYPES.map(t=>`<div class="s rounded-2xl p-5 group" style="transition:all .3s"><div class="flex items-center gap-3 mb-3"><span class="text-2xl">${t.icon}</span><h4 class="font-display text-lg font-semibold" style="color:var(--t1)">${t.name}</h4></div><p class="text-sm mb-3" style="color:var(--tf)">${t.desc}</p><div class="mb-3"><div class="text-xs text-red-400 font-semibold uppercase tracking-wider mb-1.5">AI Risks</div>${t.risks.map(r=>`<div class="text-xs flex gap-1.5" style="color:var(--tm)"><span class="text-red-400/60">▸</span>${r}</div>`).join('')}</div><div><div class="text-xs text-emerald-500 font-semibold uppercase tracking-wider mb-1.5">Verification Methods</div>${t.checks.map(c=>`<div class="text-xs flex gap-1.5" style="color:var(--tm)"><span class="text-emerald-400/60">▸</span>${c}</div>`).join('')}</div></div>`).join('');const sel=document.getElementById('newArtifactType');sel.innerHTML='<option value="">Select...</option>'+ARTIFACT_TYPES.map(t=>`<option value="${t.id}">${t.icon} ${t.name}</option>`).join('')}
 
-// ========================================
-// CASE INFO
-// ========================================
-function saveCaseInfo() {
-  state.caseInfo = {
-    caseNumber: document.getElementById('caseNumber').value,
-    courtName: document.getElementById('courtName').value,
-    judgeName: document.getElementById('judgeName').value,
-    submissionDate: document.getElementById('submissionDate').value,
-    caseTitle: document.getElementById('caseTitle').value,
-    attorneyName: document.getElementById('attorneyName').value,
-    caseNotes: document.getElementById('caseNotes').value
-  };
-  saveState();
-  showToast('Case information saved');
-}
+function addArtifact(){const n=document.getElementById('newArtifactName').value.trim(),t=document.getElementById('newArtifactType').value,p=document.getElementById('newArtifactParty').value;if(!n||!t){showToast('Please enter name and type',true);return}state.artifacts.push({id:Date.now().toString(),name:n,type:t,party:p,dateAdded:new Date().toISOString()});document.getElementById('newArtifactName').value='';renderArtifacts();updateStats();saveState();showToast('Artifact added')}
+function removeArtifact(id){state.artifacts=state.artifacts.filter(a=>a.id!==id);delete state.ratings[id];renderArtifacts();renderRatings();updateStats();saveState()}
+function renderArtifacts(){const l=document.getElementById('artifactList');if(!state.artifacts.length){l.innerHTML='';return}l.innerHTML=state.artifacts.map(a=>{const t=ARTIFACT_TYPES.find(x=>x.id===a.type);return`<div class="e flex items-center justify-between rounded-lg px-4 py-2.5"><div class="flex items-center gap-3 flex-wrap"><span>${t?.icon||'📎'}</span><span class="text-sm font-medium" style="color:var(--t1)">${a.name}</span><span class="text-xs px-2 py-0.5 rounded" style="background:var(--bdg);color:var(--tm)">${a.party}</span><span class="text-xs" style="color:var(--tf)">${t?.name||a.type}</span></div><button onclick="removeArtifact('${a.id}')" class="hover:text-red-400 transition text-sm" style="color:var(--tf)">✕</button></div>`}).join('');document.getElementById('artifactCount').textContent=state.artifacts.length}
 
-function loadCaseInfo() {
-  if (state.caseInfo) {
-    for (const [key, val] of Object.entries(state.caseInfo)) {
-      const el = document.getElementById(key);
-      if (el) el.value = val || '';
-    }
-  }
-}
+function renderChecklist(){document.getElementById('checklistContainer').innerHTML=CHECKLIST_SECTIONS.map(s=>`<div class="s rounded-2xl p-6"><h4 class="font-display text-lg font-semibold mb-4" style="color:var(--tgs)">${s.title}</h4><div class="space-y-1">${s.items.map(i=>`<label class="checklist-item flex items-start gap-3 p-3 rounded-lg cursor-pointer transition"><input type="checkbox" class="mt-1 w-4 h-4 rounded" ${state.checklist[i.id]?'checked':''} onchange="toggleCheck('${i.id}',this.checked)"><span class="text-sm font-serif-body" id="label-${i.id}" style="color:${state.checklist[i.id]?'var(--tf)':'var(--t2)'};${state.checklist[i.id]?'text-decoration:line-through':''}">${i.text}</span></label>`).join('')}</div></div>`).join('')}
+function toggleCheck(id,c){state.checklist[id]=c;const l=document.getElementById(`label-${id}`);if(l){l.style.color=c?'var(--tf)':'var(--t2)';l.style.textDecoration=c?'line-through':'none'}updateStats();saveState()}
+function resetChecklist(){if(!confirm('Reset all checklist items?'))return;state.checklist={};renderChecklist();updateStats();saveState()}
 
-// ========================================
-// ARTIFACT TYPES GRID
-// ========================================
-function renderArtifactTypes() {
-  const grid = document.getElementById('artifactTypesGrid');
-  grid.innerHTML = ARTIFACT_TYPES.map(t => `
-    <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-5 hover:border-gold-500/20 transition group">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-2xl">${t.icon}</span>
-        <h4 class="font-display text-lg font-semibold text-white group-hover:text-gold-400 transition">${t.name}</h4>
-      </div>
-      <p class="text-navy-400 text-sm mb-3">${t.desc}</p>
-      <div class="mb-3">
-        <div class="text-xs text-red-400 font-semibold uppercase tracking-wider mb-1.5">AI Risks</div>
-        <div class="space-y-1">${t.risks.map(r => `<div class="text-xs text-navy-300 flex gap-1.5"><span class="text-red-400/60">▸</span>${r}</div>`).join('')}</div>
-      </div>
-      <div>
-        <div class="text-xs text-emerald-400 font-semibold uppercase tracking-wider mb-1.5">Verification Methods</div>
-        <div class="space-y-1">${t.checks.map(c => `<div class="text-xs text-navy-300 flex gap-1.5"><span class="text-emerald-400/60">▸</span>${c}</div>`).join('')}</div>
-      </div>
-    </div>
-  `).join('');
+function renderRatings(){const l=document.getElementById('artifactRatingList');if(!state.artifacts.length){l.innerHTML='<p class="text-sm italic" style="color:var(--tf)">Add artifacts first.</p>';return}l.innerHTML=state.artifacts.map(a=>{const t=ARTIFACT_TYPES.find(x=>x.id===a.type),r=state.ratings[a.id]||0;return`<div class="e rounded-xl p-4"><div class="flex items-center justify-between mb-3"><div class="flex items-center gap-2"><span>${t?.icon||'📎'}</span><span class="font-medium text-sm" style="color:var(--t1)">${a.name}</span><span class="text-xs" style="color:var(--tf)">(${a.party})</span></div><span class="text-sm font-bold ${getRatingColor(r)}">${getRatingGrade(r)} — ${r}%</span></div><div class="flex items-center gap-3"><span class="text-xs w-16" style="color:var(--tf)">Authentic</span><input type="range" min="0" max="100" value="${r}" class="flex-1 h-2 rounded-full appearance-none cursor-pointer" style="background:linear-gradient(to right,#22c55e ${100-r}%,#ef4444 ${100-r}%)" oninput="updateRating('${a.id}',this.value)"><span class="text-xs w-20 text-right" style="color:var(--tf)">AI-Generated</span></div></div>`}).join('');updateOverallRating()}
+function updateRating(id,v){state.ratings[id]=parseInt(v);renderRatings();updateStats();saveState()}
+function getRatingGrade(p){if(p<=15)return'A';if(p<=35)return'B';if(p<=55)return'C';if(p<=80)return'D';return'F'}
+function getRatingColor(p){if(p<=15)return'text-emerald-500';if(p<=35)return'text-teal-500';if(p<=55)return'text-amber-500';if(p<=80)return'text-orange-500';return'text-red-500'}
+function getRatingBgStyle(p){if(p<=15)return'background:var(--re);border:1px solid var(--reb);color:#22c55e';if(p<=35)return'background:var(--rt);border:1px solid var(--rtb);color:#14b8a6';if(p<=55)return'background:var(--ra);border:1px solid var(--rab);color:#f59e0b';if(p<=80)return'background:var(--ro);border:1px solid var(--rob);color:#f97316';return'background:var(--rr);border:1px solid var(--rrb);color:#ef4444'}
+function getRatingLabel(p){if(p<=15)return'Authentic — Low AI Risk';if(p<=35)return'Likely Authentic';if(p<=55)return'Inconclusive — Further Review Needed';if(p<=80)return'Likely AI-Generated';return'AI-Generated — High Risk'}
+function updateOverallRating(){const b=document.getElementById('overallRatingBadge'),l=document.getElementById('overallRatingLabel'),pe=document.getElementById('overallRatingPercent'),ra=state.artifacts.filter(a=>state.ratings[a.id]!==undefined);if(!ra.length){b.style.cssText='background:var(--bdg);color:var(--tf)';b.textContent='—';l.textContent='Complete ratings to calculate';pe.textContent='';document.getElementById('riskIndicator').style.cssText='background:var(--bdg);color:var(--tf)';document.getElementById('riskIndicator').textContent='—';document.getElementById('riskLabel').textContent='Not Yet Rated';document.getElementById('riskSub').textContent='Complete checklist to generate';return}const avg=Math.round(ra.reduce((s,a)=>s+(state.ratings[a.id]||0),0)/ra.length);b.style.cssText=getRatingBgStyle(avg);b.textContent=getRatingGrade(avg);l.textContent=getRatingLabel(avg);pe.textContent=`${avg}% average across ${ra.length} artifact(s)`;const ri=document.getElementById('riskIndicator');ri.style.cssText=getRatingBgStyle(avg);ri.textContent=getRatingGrade(avg);document.getElementById('riskLabel').textContent=getRatingLabel(avg);document.getElementById('riskSub').textContent=`${avg}% composite risk`}
 
-  // Populate type dropdown
-  const sel = document.getElementById('newArtifactType');
-  sel.innerHTML = '<option value="">Select type...</option>' + ARTIFACT_TYPES.map(t => `<option value="${t.id}">${t.icon} ${t.name}</option>`).join('');
-}
+function renderCaseLaw(){document.getElementById('caseLawGrid').innerHTML=CASE_LAW.map(c=>`<div class="case-card s rounded-2xl p-6"><div class="flex items-start justify-between mb-3"><h4 class="font-display text-lg font-semibold" style="color:var(--t1)">${c.name}</h4><span class="text-xs px-2 py-1 rounded-full whitespace-nowrap" style="background:var(--tag-bg);border:1px solid var(--tag-brd);color:var(--tgs)">${c.tag}</span></div><p class="text-xs mb-1" style="color:var(--tg)">${c.cite}</p><p class="text-xs mb-3" style="color:var(--tf)">${c.court}</p><p class="text-sm font-serif-body mb-3 leading-relaxed" style="color:var(--tm)">${c.summary}</p><div class="border-t pt-3" style="border-color:var(--brd)"><div class="text-xs uppercase tracking-wider mb-1" style="color:var(--tf)">Impact & Precedent</div><p class="text-sm font-serif-body" style="color:var(--t2)">${c.impact}</p></div></div>`).join('')}
 
-// ========================================
-// ARTIFACTS MANAGEMENT
-// ========================================
-function addArtifact() {
-  const name = document.getElementById('newArtifactName').value.trim();
-  const type = document.getElementById('newArtifactType').value;
-  const party = document.getElementById('newArtifactParty').value;
-  if (!name || !type) { showToast('Please enter a name and type', true); return; }
-  state.artifacts.push({ id: Date.now().toString(), name, type, party, dateAdded: new Date().toISOString() });
-  document.getElementById('newArtifactName').value = '';
-  renderArtifacts();
-  updateStats();
-  saveState();
-  showToast('Artifact added');
-}
+function renderWorkflow(){document.getElementById('workflowSteps').innerHTML=WORKFLOW_STEPS.map(s=>`<div class="flex gap-4 items-start"><div class="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center font-display font-bold text-lg" style="background:var(--wf);border:1px solid var(--brd-a);color:var(--tgs)">${s.step}</div><div class="flex-1 s rounded-xl p-5"><div class="flex items-center justify-between mb-1"><h4 class="font-display text-base font-semibold" style="color:var(--t1)">${s.title}</h4><span class="text-xs px-2 py-0.5 rounded" style="background:var(--bdg);color:var(--tf)">${s.duration}</span></div><p class="text-sm font-serif-body leading-relaxed" style="color:var(--tm)">${s.desc}</p><label class="no-print flex items-center gap-2 mt-3 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded" ${state.workflowChecks?.[`w${s.step}`]?'checked':''} onchange="toggleWorkflow('w${s.step}',this.checked)"><span class="text-xs" style="color:var(--tf)">Mark as completed</span></label></div></div>`).join('')}
+function toggleWorkflow(id,c){if(!state.workflowChecks)state.workflowChecks={};state.workflowChecks[id]=c;saveState()}
 
-function removeArtifact(id) {
-  state.artifacts = state.artifacts.filter(a => a.id !== id);
-  delete state.ratings[id];
-  renderArtifacts();
-  renderRatings();
-  updateStats();
-  saveState();
-}
+function updateStats(){const tot=CHECKLIST_SECTIONS.reduce((s,sec)=>s+sec.items.length,0),chk=Object.values(state.checklist).filter(Boolean).length,pct=tot?Math.round(chk/tot*100):0;document.getElementById('progressPercent').textContent=pct+'%';document.getElementById('progressBar').style.width=pct+'%';document.getElementById('checkedCount').textContent=chk;document.getElementById('totalCount').textContent=tot;document.getElementById('artifactCount').textContent=state.artifacts.length}
 
-function renderArtifacts() {
-  const list = document.getElementById('artifactList');
-  if (state.artifacts.length === 0) { list.innerHTML = ''; return; }
-  list.innerHTML = state.artifacts.map(a => {
-    const t = ARTIFACT_TYPES.find(x => x.id === a.type);
-    return `<div class="flex items-center justify-between bg-navy-800/40 border border-navy-700/20 rounded-lg px-4 py-2.5">
-      <div class="flex items-center gap-3">
-        <span>${t?.icon || '📎'}</span>
-        <span class="text-white text-sm font-medium">${a.name}</span>
-        <span class="text-xs text-navy-400 bg-navy-700/30 px-2 py-0.5 rounded">${a.party}</span>
-        <span class="text-xs text-navy-500">${t?.name || a.type}</span>
-      </div>
-      <button onclick="removeArtifact('${a.id}')" class="text-navy-500 hover:text-red-400 transition text-sm">✕</button>
-    </div>`;
-  }).join('');
-  document.getElementById('artifactCount').textContent = state.artifacts.length;
-}
+function exportData(){const b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`veritas-ai-${state.caseInfo?.caseNumber||'case'}-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);showToast('Data exported')}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=function(ev){try{const d=JSON.parse(ev.target.result);state={caseInfo:d.caseInfo||{},artifacts:d.artifacts||[],checklist:d.checklist||{},ratings:d.ratings||{},workflowChecks:d.workflowChecks||{}};loadCaseInfo();renderAll();saveState();showToast('Imported successfully')}catch(err){showToast('Invalid file format',true)}};r.readAsText(f)}
+function generateReport(){document.getElementById('printDate').textContent=new Date().toLocaleString();window.print()}
+function saveState(){try{localStorage.setItem('veritas-state',JSON.stringify(state))}catch(e){}}
+function loadState(){try{const s=localStorage.getItem('veritas-state');if(s){const d=JSON.parse(s);state={caseInfo:d.caseInfo||{},artifacts:d.artifacts||[],checklist:d.checklist||{},ratings:d.ratings||{},workflowChecks:d.workflowChecks||{}}}}catch(e){}}
+function showToast(m,err=false){const t=document.createElement('div');t.className=`fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl text-sm font-medium shadow-2xl fade-in ${err?'bg-red-500/90 text-white':'bg-gradient-to-r from-gold-500 to-gold-600 text-navy-900'}`;t.textContent=m;document.body.appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='opacity .3s';setTimeout(()=>t.remove(),300)},2500)}
+function renderAll(){loadCaseInfo();renderArtifactTypes();renderArtifacts();renderChecklist();renderRatings();renderCaseLaw();renderWorkflow();updateStats()}
 
-// ========================================
-// CHECKLIST
-// ========================================
-function renderChecklist() {
-  const container = document.getElementById('checklistContainer');
-  container.innerHTML = CHECKLIST_SECTIONS.map(sec => `
-    <div class="bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-      <h4 class="font-display text-lg font-semibold text-gold-400 mb-4">${sec.title}</h4>
-      <div class="space-y-1">
-        ${sec.items.map(item => `
-          <label class="checklist-item flex items-start gap-3 p-3 rounded-lg cursor-pointer transition">
-            <input type="checkbox" class="mt-1 w-4 h-4 rounded" ${state.checklist[item.id] ? 'checked' : ''} onchange="toggleCheck('${item.id}', this.checked)">
-            <span class="text-sm font-serif-body ${state.checklist[item.id] ? 'text-navy-400 line-through' : 'text-navy-200'}" id="label-${item.id}">${item.text}</span>
-          </label>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-function toggleCheck(id, checked) {
-  state.checklist[id] = checked;
-  const label = document.getElementById(`label-${id}`);
-  if (label) {
-    label.classList.toggle('text-navy-400', checked);
-    label.classList.toggle('line-through', checked);
-    label.classList.toggle('text-navy-200', !checked);
-  }
-  updateStats();
-  saveState();
-}
-
-function resetChecklist() {
-  if (!confirm('Reset all checklist items?')) return;
-  state.checklist = {};
-  renderChecklist();
-  updateStats();
-  saveState();
-}
-
-// ========================================
-// RATINGS
-// ========================================
-function renderRatings() {
-  const list = document.getElementById('artifactRatingList');
-  if (state.artifacts.length === 0) {
-    list.innerHTML = '<p class="text-navy-500 text-sm italic">Add artifacts in the "Artifact Types" tab first, then rate them here.</p>';
-    return;
-  }
-  list.innerHTML = state.artifacts.map(a => {
-    const t = ARTIFACT_TYPES.find(x => x.id === a.type);
-    const rating = state.ratings[a.id] || 0;
-    return `<div class="bg-navy-800/40 border border-navy-700/20 rounded-xl p-4">
-      <div class="flex items-center justify-between mb-3">
-        <div class="flex items-center gap-2">
-          <span>${t?.icon || '📎'}</span>
-          <span class="text-white font-medium text-sm">${a.name}</span>
-          <span class="text-xs text-navy-500">(${a.party})</span>
-        </div>
-        <span class="text-sm font-bold ${getRatingColor(rating)}">${getRatingGrade(rating)} — ${rating}%</span>
-      </div>
-      <div class="flex items-center gap-3">
-        <span class="text-xs text-navy-500 w-16">Authentic</span>
-        <input type="range" min="0" max="100" value="${rating}" class="flex-1 h-2 rounded-full appearance-none cursor-pointer" 
-          style="background: linear-gradient(to right, #22c55e ${100-rating}%, #ef4444 ${100-rating}%)"
-          oninput="updateRating('${a.id}', this.value)">
-        <span class="text-xs text-navy-500 w-20 text-right">AI-Generated</span>
-      </div>
-    </div>`;
-  }).join('');
-  updateOverallRating();
-}
-
-function updateRating(id, val) {
-  state.ratings[id] = parseInt(val);
-  renderRatings();
-  updateStats();
-  saveState();
-}
-
-function getRatingGrade(pct) {
-  if (pct <= 15) return 'A';
-  if (pct <= 35) return 'B';
-  if (pct <= 55) return 'C';
-  if (pct <= 80) return 'D';
-  return 'F';
-}
-
-function getRatingColor(pct) {
-  if (pct <= 15) return 'text-emerald-400';
-  if (pct <= 35) return 'text-teal-400';
-  if (pct <= 55) return 'text-amber-400';
-  if (pct <= 80) return 'text-orange-400';
-  return 'text-red-400';
-}
-
-function getRatingBg(pct) {
-  if (pct <= 15) return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
-  if (pct <= 35) return 'bg-teal-500/20 text-teal-400 border-teal-500/30';
-  if (pct <= 55) return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
-  if (pct <= 80) return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
-  return 'bg-red-500/20 text-red-400 border-red-500/30';
-}
-
-function getRatingLabel(pct) {
-  if (pct <= 15) return 'Authentic — Low AI Risk';
-  if (pct <= 35) return 'Likely Authentic';
-  if (pct <= 55) return 'Inconclusive — Further Review Needed';
-  if (pct <= 80) return 'Likely AI-Generated';
-  return 'AI-Generated — High Risk';
-}
-
-function updateOverallRating() {
-  const badge = document.getElementById('overallRatingBadge');
-  const label = document.getElementById('overallRatingLabel');
-  const pctEl = document.getElementById('overallRatingPercent');
-  const ratedArtifacts = state.artifacts.filter(a => state.ratings[a.id] !== undefined);
-  if (ratedArtifacts.length === 0) {
-    badge.className = 'inline-flex items-center justify-center w-24 h-24 rounded-2xl bg-navy-700/50 text-5xl font-display font-bold text-navy-400 mb-3';
-    badge.textContent = '—';
-    label.textContent = 'Complete ratings to calculate';
-    pctEl.textContent = '';
-    return;
-  }
-  const avg = Math.round(ratedArtifacts.reduce((s, a) => s + (state.ratings[a.id] || 0), 0) / ratedArtifacts.length);
-  const grade = getRatingGrade(avg);
-  badge.className = `inline-flex items-center justify-center w-24 h-24 rounded-2xl border ${getRatingBg(avg)} text-5xl font-display font-bold mb-3`;
-  badge.textContent = grade;
-  label.textContent = getRatingLabel(avg);
-  pctEl.textContent = `${avg}% average AI-generation probability across ${ratedArtifacts.length} artifact(s)`;
-
-  // Update sidebar
-  const ri = document.getElementById('riskIndicator');
-  ri.className = `w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-display font-bold border ${getRatingBg(avg)}`;
-  ri.textContent = grade;
-  document.getElementById('riskLabel').textContent = getRatingLabel(avg);
-  document.getElementById('riskSub').textContent = `${avg}% composite risk`;
-}
-
-// ========================================
-// CASE LAW
-// ========================================
-function renderCaseLaw() {
-  const grid = document.getElementById('caseLawGrid');
-  grid.innerHTML = CASE_LAW.map(c => `
-    <div class="case-card bg-navy-900/60 border border-navy-700/30 rounded-2xl p-6">
-      <div class="flex items-start justify-between mb-3">
-        <h4 class="font-display text-lg font-semibold text-white">${c.name}</h4>
-        <span class="text-xs px-2 py-1 rounded-full bg-gold-500/10 text-gold-400 border border-gold-500/20 whitespace-nowrap">${c.tag}</span>
-      </div>
-      <p class="text-xs text-gold-500/80 mb-1">${c.cite}</p>
-      <p class="text-xs text-navy-500 mb-3">${c.court}</p>
-      <p class="text-sm font-serif-body text-navy-300 mb-3 leading-relaxed">${c.summary}</p>
-      <div class="border-t border-navy-700/30 pt-3">
-        <div class="text-xs text-navy-400 uppercase tracking-wider mb-1">Impact & Precedent</div>
-        <p class="text-sm font-serif-body text-navy-200">${c.impact}</p>
-      </div>
-    </div>
-  `).join('');
-}
-
-// ========================================
-// WORKFLOW
-// ========================================
-function renderWorkflow() {
-  const container = document.getElementById('workflowSteps');
-  container.innerHTML = WORKFLOW_STEPS.map(s => `
-    <div class="flex gap-4 items-start">
-      <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-gold-500/20 to-gold-600/10 border border-gold-500/20 flex items-center justify-center text-gold-400 font-display font-bold text-lg">${s.step}</div>
-      <div class="flex-1 bg-navy-900/60 border border-navy-700/30 rounded-xl p-5">
-        <div class="flex items-center justify-between mb-1">
-          <h4 class="font-display text-base font-semibold text-white">${s.title}</h4>
-          <span class="text-xs text-navy-500 bg-navy-700/30 px-2 py-0.5 rounded">${s.duration}</span>
-        </div>
-        <p class="text-sm font-serif-body text-navy-300 leading-relaxed">${s.desc}</p>
-        <label class="no-print flex items-center gap-2 mt-3 cursor-pointer">
-          <input type="checkbox" class="w-4 h-4 rounded" ${state.workflowChecks?.[`w${s.step}`] ? 'checked' : ''} onchange="toggleWorkflow('w${s.step}', this.checked)">
-          <span class="text-xs text-navy-400">Mark as completed</span>
-        </label>
-      </div>
-    </div>
-  `).join('');
-}
-
-function toggleWorkflow(id, checked) {
-  if (!state.workflowChecks) state.workflowChecks = {};
-  state.workflowChecks[id] = checked;
-  saveState();
-}
-
-// ========================================
-// STATS
-// ========================================
-function updateStats() {
-  const totalItems = CHECKLIST_SECTIONS.reduce((s, sec) => s + sec.items.length, 0);
-  const checkedItems = Object.values(state.checklist).filter(Boolean).length;
-  const pct = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
-  document.getElementById('progressPercent').textContent = pct + '%';
-  document.getElementById('progressBar').style.width = pct + '%';
-  document.getElementById('checkedCount').textContent = checkedItems;
-  document.getElementById('totalCount').textContent = totalItems;
-  document.getElementById('artifactCount').textContent = state.artifacts.length;
-}
-
-// ========================================
-// EXPORT / IMPORT
-// ========================================
-function exportData() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = `veritas-ai-${state.caseInfo?.caseNumber || 'case'}-${new Date().toISOString().slice(0,10)}.json`;
-  a.click();
-  URL.revokeObjectURL(a.href);
-  showToast('Data exported');
-}
-
-function importData(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const data = JSON.parse(e.target.result);
-      state = { caseInfo: data.caseInfo || {}, artifacts: data.artifacts || [], checklist: data.checklist || {}, ratings: data.ratings || {}, workflowChecks: data.workflowChecks || {} };
-      loadCaseInfo();
-      renderAll();
-      saveState();
-      showToast('Data imported successfully');
-    } catch(err) {
-      showToast('Invalid file format', true);
-    }
-  };
-  reader.readAsText(file);
-}
-
-// ========================================
-// PRINT REPORT
-// ========================================
-function generateReport() {
-  document.getElementById('printDate').textContent = new Date().toLocaleString();
-  window.print();
-}
-
-// ========================================
-// PERSISTENCE
-// ========================================
-function saveState() {
-  try { localStorage.setItem('veritas-state', JSON.stringify(state)); } catch(e) {}
-}
-
-function loadState() {
-  try {
-    const saved = localStorage.getItem('veritas-state');
-    if (saved) {
-      const d = JSON.parse(saved);
-      state = { caseInfo: d.caseInfo || {}, artifacts: d.artifacts || [], checklist: d.checklist || {}, ratings: d.ratings || {}, workflowChecks: d.workflowChecks || {} };
-    }
-  } catch(e) {}
-}
-
-// ========================================
-// TOAST
-// ========================================
-function showToast(msg, isError = false) {
-  const toast = document.createElement('div');
-  toast.className = `fixed bottom-6 right-6 z-50 px-5 py-3 rounded-xl text-sm font-medium shadow-2xl fade-in ${isError ? 'bg-red-500/90 text-white' : 'bg-gold-500 text-navy-900'}`;
-  toast.textContent = msg;
-  document.body.appendChild(toast);
-  setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; setTimeout(() => toast.remove(), 300); }, 2500);
-}
-
-// ========================================
-// INIT
-// ========================================
-function renderAll() {
-  loadCaseInfo();
-  renderArtifactTypes();
-  renderArtifacts();
-  renderChecklist();
-  renderRatings();
-  renderCaseLaw();
-  renderWorkflow();
-  updateStats();
-}
-
-loadState();
-renderAll();
+loadTheme();loadState();renderAll();
 </script>
 </body>
 </html>
